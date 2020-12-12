@@ -127,7 +127,9 @@ dmypy.json
 # Mac
 .DS_Store
 uploads/
+_test/
 node_modules/
+users/management/commands/createsu.py
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
