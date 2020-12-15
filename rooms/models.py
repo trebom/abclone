@@ -3,6 +3,7 @@ from django.urls import reverse
 from django_countries.fields import CountryField
 from core import models as core_models
 from users import models as user_models
+from cal import Calendar
 
 # Create your models here.
 
@@ -115,11 +116,14 @@ class Room(core_models.TimeStampedModel):
             return None
 
     def get_next_four_photos(self):
-        try:
-            (photo,) = self.photos.all()[:1]
-            return photo.file.url
-        except ValueError:
-            return None
+
+        photos = self.photos.all()[1:5]
+        return photos
+
+    def get_calendars(self):
+        this_month = Calendar(2020, 12)
+        next_month = Calendar(2021, 1)
+        return [this_month, next_month]
 
     def get_absolute_url(self):
         return reverse("rooms:detail", kwargs={"pk": self.pk})
